@@ -2,3 +2,5 @@ numpy
 ipywidgets
 nbinteract
 IPython.display
+matplotlib
+Dropdown
