@@ -1,6 +1,7 @@
+pandas
 numpy
 ipywidgets
 nbinteract
 IPython
 matplotlib
-Dropdown
+scripts.curve_gen

@@ -22,8 +22,8 @@ def surv_curve(T, E, list, df):
 def surv_curve_wg(value):
     from scripts.transform_dataset import transurv
 
-    history = join(os.path.dirname(os.getcwd()), 'Survival Analysis', 'datasets', 'filling_event.csv')
-    machine = join(os.path.dirname(os.getcwd()), 'Survival Analysis', 'datasets', 'machine.csv')
+    history = join(os.path.dirname(os.getcwd()), 'Survival-analysis', 'datasets', 'filling_event.csv')
+    machine = join(os.path.dirname(os.getcwd()), 'Survival-analysis', 'datasets', 'machine.csv')
     ttf = transurv(hist_url=history, mach_url=machine)
     
     ttf_ad = ttf[ttf['name'] == value]
