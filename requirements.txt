@@ -1,6 +1,6 @@
 numpy
 ipywidgets
 nbinteract
-IPython.display
+IPython
 matplotlib
 Dropdown
