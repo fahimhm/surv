@@ -1276,3 +1276,104 @@ bail@chrome://marionette/content/sync.js:224:64
 [Child 107[GPU 11788,
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
+1558679689572	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\MAULA~1.FAH\\AppData\\Local\\Temp\\rust_mozprofile.XVNFQlcB3LSI"
+1558679690030	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1558679690031	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1558679690031	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1558679691274	Marionette	INFO	Listening on port 61521
+1558679691698	Marionette	WARN	TLS certificate errors will be ignored for this session
+1558679730114	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\MAULA~1.FAH\\AppData\\Local\\Temp\\rust_mozprofile.zxb4BgNhoTKP"
+1558679730407	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1558679730408	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1558679730408	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1558679732241	Marionette	INFO	Listening on port 61626
+1558679732338	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: a.cells is undefined
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+1558679739905	Marionette	WARN	TimedPromise timed out after 0 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:223:64
+[Child 8364, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 8[3Child 24380, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 24380, Chrome_ChildThread] WARNING: pipe erro[Child 25412, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 254121558679759469	Marionette	INFO	Stopped listening on port 61626
+
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+[
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1558679770621	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\MAULA~1.FAH\\AppData\\Local\\Temp\\rust_mozprofile.G46SWMwUDms4"
+1558679770986	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1558679770986	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1558679770986	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1558679772183	Marionette	INFO	Listening on port 61816
+1558679772242	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: a.cells is undefined
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+1558679778668	Marionette	WARN	TimedPromise timed out after 0 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:223:64
+1558679779205	Marionette	WARN	TimedPromise timed out after 0 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:223:64
+1558679779458	Marionette	WARN	TimedPromise timed out after 0 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:223:64
+1558679781152	Marionette	INFO	Stopped listening on port 61816
+IPDL protocol error: Handler returned error code!
+
+###!!! [Parent][DispatchAsyncMessage] Error: PLayerTransaction::Msg_ReleaseLayer Processing error: message was deserialized, but the handler returned false (indicating failure)
+
+[Parent 12072, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 17592, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 17592, Chrome_C[Child 25540, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 25540, Chrome_Ch[GPU
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+ 
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+
+1558687701948	mozrunner::runner	INFO	Running command: "C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\MAULA~1.FAH\\AppData\\Local\\Temp\\rust_mozprofile.aHTkqa43iqu3"
+1558687702631	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1558687702632	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1558687702632	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+1558687705081	Marionette	INFO	Listening on port 64499
+1558687705195	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: a.cells is undefined
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+JavaScript error: http://maula%2Efahim:welcometoparadise21@reportportal/Reports/js/ReportingServices.js, line 1: TypeError: d.lastChild is null
+1558687712921	Marionette	WARN	TimedPromise timed out after 0 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:223:64
+1558687713535	Marionette	WARN	TimedPromise timed out after 0 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:223:64
+1558687713801	Marionette	WARN	TimedPromise timed out after 0 ms: stacktrace:
+bail@chrome://marionette/content/sync.js:223:64
+1558687716505	Marionette	INFO	Stopped listening on port 64499
+[Child 25484, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 25484[Parent 13680, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 21140, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 21140, [Parent 13680, Gecko_IOThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 24444, Chrome_ChildThread] WARNING: pipe error: 109: file z:/task_1558035249/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 341
+[Child 24444, Chrom
+###!!! [Child][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+[GP
+###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
+

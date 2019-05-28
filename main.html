@@ -1,36 +1,11 @@
+
+
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
 
+
 <title>main</title>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-<script>
-(function() {
-  function addWidgetsRenderer() {
-    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
-    var scriptElement = document.createElement('script');
-    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
-    var widgetState;
-
-    // Fallback for older version:
-    try {
-      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
-
-      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
-        widgetRendererSrc = 'https://unpkg.com/jupyter-js-widgets@*/dist/embed.js';
-      }
-    } catch(e) {}
-
-    scriptElement.src = widgetRendererSrc;
-    document.body.appendChild(scriptElement);
-  }
-
-  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
-}());
-</script>
 
 <style type="text/css">
     /*!
@@ -13095,20 +13070,17 @@ div#notebook {
   div.cell {
     display: block;
     page-break-inside: avoid;
-  } 
-  div.output_wrapper { 
-    display: block;
-    page-break-inside: avoid; 
   }
-  div.output { 
+  div.output_wrapper {
     display: block;
-    page-break-inside: avoid; 
+    page-break-inside: avoid;
+  }
+  div.output {
+    display: block;
+    page-break-inside: avoid;
   }
 }
 </style>
-
-<!-- Custom stylesheet, it must be in the same directory as the html file -->
-<link rel="stylesheet" href="custom.css">
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
@@ -13131,20 +13103,63 @@ div#notebook {
         }
     });
     </script>
-    <!-- End of mathjax configuration --></head>
+    <!-- End of mathjax configuration -->
+
+<style>
+        .cell.nbinteract-left {
+            width: 50%;
+            float: left;
+        }
+
+        .cell.nbinteract-right {
+            width: 50%;
+            float: right;
+        }
+
+        .cell.nbinteract-hide_in > .input {
+            display: none;
+        }
+
+        .cell.nbinteract-hide_out > .output_wrapper {
+            display: none;
+        }
+
+        .cell:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
+
+        div.output_subarea {
+            max-width: initial;
+        }
+
+        .jp-OutputPrompt {
+            display: none;
+        }
+    </style></head>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container">
+    <div class="container">
+      
 
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+
+
+  <div class="cell text_cell">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
+
+
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Implementasi-Survival-Analysis-Pada-Sistem-Predictive-Maintenance"><center>Implementasi Survival Analysis Pada Sistem Predictive Maintenance</center><a class="anchor-link" href="#Implementasi-Survival-Analysis-Pada-Sistem-Predictive-Maintenance">&#182;</a></h1><center>Oleh: Fahim Hadi Maula</center>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Background">Background<a class="anchor-link" href="#Background">&#182;</a></h2><p>Sejak 2017 PEA telah menerapkan framework maintenance guna meningkatkan reliability plant Ciawi. Salah satu framewok yang digunakan adalah Reliability Centered Maintenance (RCM).</p>
 <p>RCM memiliki 4 pilar utama:</p>
@@ -13185,16 +13200,19 @@ Model ini membutuhkan support data yang sama dengan model RUL diatas.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Libraries">Libraries<a class="anchor-link" href="#Libraries">&#182;</a></h2>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># pandas for data management</span>
@@ -13233,9 +13251,8 @@ Model ini membutuhkan support data yang sama dengan model RUL diatas.</p>
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Censored-Event">Censored Event<a class="anchor-link" href="#Censored-Event">&#182;</a></h2><p>Dalam analisa berikut terdapat 2 observasi: survive dan not-survive (namanya juga survival analysis :p). Yang perlu didefinisikan terlebih dahulu adalah: mesin yang survive artinya mesin tersebut beroperasi normal tanpa terjadi kegagalan/rusak yang ditandai dengan terbitnya WO-PJOL.</p>
 <p>Dataset diambil dari dua data yang dimiliki oleh PEA-Fillpack B untuk mesin filling:</p>
@@ -13249,13 +13266,17 @@ Model ini membutuhkan support data yang sama dengan model RUL diatas.</p>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># call dataset</span>
-<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://maula.fahim:password@reportportal/Reports/Pages/Folder.aspx?ItemPath=</span><span class="si">%2f</span><span class="s2">99.+Aplikasi+lain-lain</span><span class="si">%2f</span><span class="s2">04.Aplikasi+Manufacturing</span><span class="si">%2f</span><span class="s2">Portal+Engineering</span><span class="si">%2f</span><span class="s2">Work+Order&amp;ViewMode=List&quot;</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;http://maula.fahim:fahimhadimaula28@reportportal/Reports/Pages/Folder.aspx?ItemPath=</span><span class="si">%2f</span><span class="s2">99.+Aplikasi+lain-lain</span><span class="si">%2f</span><span class="s2">04.Aplikasi+Manufacturing</span><span class="si">%2f</span><span class="s2">Portal+Engineering</span><span class="si">%2f</span><span class="s2">Work+Order&amp;ViewMode=List&quot;</span>
 <span class="n">download</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
 
 <span class="c1"># read dataset and getting data in the right format</span>
@@ -13268,10 +13289,14 @@ Model ini membutuhkan support data yang sama dengan model RUL diatas.</p>
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%html</span>
@@ -13290,8 +13315,7 @@ Model ini membutuhkan support data yang sama dengan model RUL diatas.</p>
 
 <div class="output_area">
 
-    <div class="prompt"></div>
-
+    
 
 
 <div class="output_html rendered_html output_subarea ">
@@ -13306,9 +13330,8 @@ table {float:left}
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Kedua dataset yang didapat di transform sehingga menjadi data dengan format berikut:</p>
 <table>
@@ -13344,9 +13367,13 @@ table {float:left}
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">ttf</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -13362,8 +13389,7 @@ table {float:left}
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[4]:</div>
-
+    
 
 
 <div class="output_html rendered_html output_subarea output_execute_result">
@@ -13443,18 +13469,21 @@ table {float:left}
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="EDA:-Histogram">EDA: Histogram<a class="anchor-link" href="#EDA:-Histogram">&#182;</a></h2><p>Visualisasi data dengan histogram untuk mengetahui persebaran data pada masing-masing mesin.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
@@ -13473,8 +13502,7 @@ table {float:left}
 
 <div class="output_area">
 
-    <div class="prompt"></div>
-
+    
 
 
 <div class="output_html rendered_html output_subarea ">
@@ -13486,10 +13514,14 @@ table {float:left}
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+  </div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;ticks&quot;</span><span class="p">)</span>
@@ -13507,21 +13539,19 @@ table {float:left}
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[6]:</div>
-
+    
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.FacetGrid at 0x5cf2a30&gt;</pre>
+<pre>&lt;seaborn.axisgrid.FacetGrid at 0x138e9190&gt;</pre>
 </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt"></div>
-
+    
 
 
 
@@ -13536,9 +13566,8 @@ table {float:left}
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Survival-Curve-Estimation">Survival Curve Estimation<a class="anchor-link" href="#Survival-Curve-Estimation">&#182;</a></h2><p>Terdapat beberapa metode yang dapat digunakan pada survival analysis.</p>
 <ul>
@@ -13554,9 +13583,13 @@ table {float:left}
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">T</span> <span class="o">=</span> <span class="n">ttf</span><span class="p">[</span><span class="s1">&#39;runhour_cum&#39;</span><span class="p">]</span>
@@ -13575,8 +13608,7 @@ table {float:left}
 
 <div class="output_area">
 
-    <div class="prompt"></div>
-
+    
 
 
 
@@ -13591,9 +13623,8 @@ table {float:left}
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Survival curve yang ditampilkan per mesin (dalam hal ini hanya mengambil mesin filling di PRB) memberikan gambaran performa mesin setelah <em>n</em> jam, hal ini dapat pula dikaitkan dengan <em>reliability</em> sebuah mesin. Saat <em>n=0</em> adalah saat mesin baru saja selesai diperbaiki. Mesin dengan performa rendah adalah mesin yang memiliki kurva yang curam. Untuk memudahkan dapat diambil sebuah garis di <em>y=0.5</em> dimana peluang survive dan fail sama-sama 50%. Semakin cepat kurva bertemu dengan garis ini, semakin buruk performa mesin.</p>
 <p>Dalam kaitannya dengan predictive, planner/tim engineer lain dapat mendapatkan informasi: setelah berapa jam kerja mesin akan memiliki peluang kerusakan lebih besar daripada peluang survive? Sehingga planner dapat menerbitkan proposal untuk melakukan perbaikan sebelum terjadi kerusakan yang merugikan SCM.</p>
@@ -13602,9 +13633,13 @@ table {float:left}
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">dd</span> <span class="o">=</span> <span class="n">wg</span><span class="o">.</span><span class="n">Dropdown</span><span class="p">(</span><span class="n">options</span><span class="o">=</span><span class="p">[</span><span class="n">machine</span> <span class="k">for</span> <span class="n">machine</span> <span class="ow">in</span> <span class="n">ttf</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()],</span> <span class="n">value</span><span class="o">=</span><span class="s1">&#39;F OMAG 6LINE AA&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;machine&#39;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -13621,30 +13656,21 @@ table {float:left}
 
 <div class="output_area">
 
-    <div class="prompt"></div>
+    
 
 
 
-
-
- 
- 
-<div id="483233b5-10ef-4555-9f2a-3c7a62359a4d"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#483233b5-10ef-4555-9f2a-3c7a62359a4d');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "f8b47c2bcd9c4f4984f34d34cd5ed668", "version_major": 2, "version_minor": 0}
-</script>
-</div>
+  <div class="output_subarea output_widget_view ">
+    <button class="js-nbinteract-widget">
+      Loading widgets...
+    </button>
+  </div>
 
 </div>
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[8]:</div>
-
+    
 
 
 
@@ -13657,9 +13683,8 @@ var element = $('#483233b5-10ef-4555-9f2a-3c7a62359a4d');
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
+  </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h2><p>Untuk mesin Filling 6 Line AD (OMAG) peluang kerusakan paling tinggi disebabkan oleh pengoperasian tidak normal. Hal ini tidak dapat ditangani langsung oleh engineering. Kemungkinan kedua adalah adanya part rusak pada mesin tersebut. Masih perlu ditambahkan feature sparepart untuk didapatkan informasi spesifik terkait part yang akan rusak.</p>
 <h2 id="Reference">Reference<a class="anchor-link" href="#Reference">&#182;</a></h2><p><a href="https://medium.com/bigdatarepublic/machine-learning-for-predictive-maintenance-where-to-start-5f3b7586acfb">https://medium.com/bigdatarepublic/machine-learning-for-predictive-maintenance-where-to-start-5f3b7586acfb</a></p>
@@ -13667,9 +13692,13 @@ var element = $('#483233b5-10ef-4555-9f2a-3c7a62359a4d');
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+
+  
+
+  <div class="
+      cell border-box-sizing code_cell rendered">
+    <div class="input">
+
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span> 
@@ -13679,16 +13708,30 @@ var element = $('#483233b5-10ef-4555-9f2a-3c7a62359a4d');
 </div>
 </div>
 
-</div>
+  </div>
+
+
+
+<!-- Loads nbinteract package -->
+<script src="https://unpkg.com/nbinteract-core" async></script>
+<script>
+  (function setupNbinteract() {
+    // If NbInteract hasn't loaded, wait one second and try again
+    if (window.NbInteract === undefined) {
+      setTimeout(setupNbinteract, 1000)
+      return
+    }
+
+    var interact = new window.NbInteract({
+      spec: 'fahimhm/surv/master',
+      baseUrl: 'https://mybinder.org',
+      provider: 'gh',
+    })
+    interact.prepare()
+
+    window.interact = interact
+  })()
+</script>
     </div>
   </div>
 </body>
-
- 
-
-<script type="application/vnd.jupyter.widget-state+json">
-{"state": {"0818438ccedb469381eba7794245f0b3": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["F MATEERBURT AA", "F OMAG 6LINE AA", "F OMAG 6LINE AB", "F OMAG 6LINE AC", "F OMAG 6LINE AD", "F TAM BAG AA", "F TOYO STPK AA", "F UNV 5LINE AC", "F UNV 6LINE AA", "F UNV 6LINE AD", "F UNV 6LINE AE", "F UNV 6LINE AG", "F UNV 6LINE AH", "F UNV 6LINE AI", "F UNV 6LINE AL", "F UNV 6LINE AM", "F UNV 6LINE AN", "F UNV 6LINE AO", "F UNV 6LINE AP", "F UNV 6LINE AQ", "F UNV 6LINE AR", "F UNV 6LINE AS", "F UNV 6LINE AT"], "description": "machine", "index": 1, "layout": "IPY_MODEL_f3633f236ebd410f97e09e7386922681", "style": "IPY_MODEL_91f2d151bbb046c4a4d3b2901810cd9b"}}, "0a653b27f0a14302920352c0ec7fc6e1": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "201c513ff1d145dc9ae7ce49fb8328d0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "23cdc7ed4890444d9b1ff12032578980": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "2f49c13511d542488831852a95b55088": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "30fd06777209473b9af72d381b32a925": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["F MATEERBURT AA", "F OMAG 6LINE AA", "F OMAG 6LINE AB", "F OMAG 6LINE AC", "F OMAG 6LINE AD", "F TAM BAG AA", "F TOYO STPK AA", "F UNV 5LINE AC", "F UNV 6LINE AA", "F UNV 6LINE AD", "F UNV 6LINE AE", "F UNV 6LINE AG", "F UNV 6LINE AH", "F UNV 6LINE AI", "F UNV 6LINE AL", "F UNV 6LINE AM", "F UNV 6LINE AN", "F UNV 6LINE AO", "F UNV 6LINE AP", "F UNV 6LINE AQ", "F UNV 6LINE AR", "F UNV 6LINE AS", "F UNV 6LINE AT"], "description": "machine", "index": 1, "layout": "IPY_MODEL_23cdc7ed4890444d9b1ff12032578980", "style": "IPY_MODEL_0a653b27f0a14302920352c0ec7fc6e1"}}, "356036192fba4f40a719362a96bf3efd": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_b9416b86a4b940179819f120c186b606", "IPY_MODEL_bd7b17dbeeea41ae9347b2df466a7fae", "IPY_MODEL_ccbd52e2cd594fe5afbf72bb6c6a032c"], "layout": "IPY_MODEL_201c513ff1d145dc9ae7ce49fb8328d0"}}, "35c28bd5996e4b7e81e205187a1d0b28": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["F MATEERBURT AA", "F OMAG 6LINE AA", "F OMAG 6LINE AB", "F OMAG 6LINE AC", "F OMAG 6LINE AD", "F TAM BAG AA", "F TOYO STPK AA", "F UNV 5LINE AC", "F UNV 6LINE AA", "F UNV 6LINE AD", "F UNV 6LINE AE", "F UNV 6LINE AG", "F UNV 6LINE AH", "F UNV 6LINE AI", "F UNV 6LINE AL", "F UNV 6LINE AM", "F UNV 6LINE AN", "F UNV 6LINE AO", "F UNV 6LINE AP", "F UNV 6LINE AQ", "F UNV 6LINE AR", "F UNV 6LINE AS", "F UNV 6LINE AT"], "description": "machine", "index": 1, "layout": "IPY_MODEL_b278a7c04a1f40bfbd5bdf29c72fb70c", "style": "IPY_MODEL_b85a172e459f4ee29b60c757e86429c4"}}, "3867dbd66db64ee08c93f7328581e78f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["F MATEERBURT AA", "F OMAG 6LINE AA", "F OMAG 6LINE AB", "F OMAG 6LINE AC", "F OMAG 6LINE AD", "F TAM BAG AA", "F TOYO STPK AA", "F UNV 5LINE AC", "F UNV 6LINE AA", "F UNV 6LINE AD", "F UNV 6LINE AE", "F UNV 6LINE AG", "F UNV 6LINE AH", "F UNV 6LINE AI", "F UNV 6LINE AL", "F UNV 6LINE AM", "F UNV 6LINE AN", "F UNV 6LINE AO", "F UNV 6LINE AP", "F UNV 6LINE AQ", "F UNV 6LINE AR", "F UNV 6LINE AS", "F UNV 6LINE AT"], "description": "machine", "index": 1, "layout": "IPY_MODEL_3c3fdce2c7264f9b95a3c16e2baef2f0", "style": "IPY_MODEL_d421c8b912724e708d8eaff2869c4962"}}, "3c3fdce2c7264f9b95a3c16e2baef2f0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "42dde9a3efc54d9b8100e4a2eebf9e5c": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["F MATEERBURT AA", "F OMAG 6LINE AA", "F OMAG 6LINE AB", "F OMAG 6LINE AC", "F OMAG 6LINE AD", "F TAM BAG AA", "F TOYO STPK AA", "F UNV 5LINE AC", "F UNV 6LINE AA", "F UNV 6LINE AD", "F UNV 6LINE AE", "F UNV 6LINE AG", "F UNV 6LINE AH", "F UNV 6LINE AI", "F UNV 6LINE AL", "F UNV 6LINE AM", "F UNV 6LINE AN", "F UNV 6LINE AO", "F UNV 6LINE AP", "F UNV 6LINE AQ", "F UNV 6LINE AR", "F UNV 6LINE AS", "F UNV 6LINE AT"], "description": "machine", "index": 1, "layout": "IPY_MODEL_bbefbe9548b6444f9d9837cbe781ddf8", "style": "IPY_MODEL_e10ffac2cbc744319c9cc74e0c4e7f10"}}, "442d5441d04d48c183b4109ca814433b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "4ddc7fa9208346709614d6a958ac3e6c": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_e1f699b4ac4646039448f616972d7185", "outputs": [{"ename": "NameError", "evalue": "name 'ttf' is not defined", "output_type": "error", "traceback": ["\u001b[1;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[1;31mNameError\u001b[0m                                 Traceback (most recent call last)", "\u001b[1;32mc:\\users\\maula.fahim\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\ipywidgets\\widgets\\interaction.py\u001b[0m in \u001b[0;36mupdate\u001b[1;34m(self, *args)\u001b[0m\n\u001b[0;32m    249\u001b[0m                     \u001b[0mvalue\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mwidget\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mget_interact_value\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    250\u001b[0m                     \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[1;33m[\u001b[0m\u001b[0mwidget\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_kwarg\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mvalue\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m--> 251\u001b[1;33m                 \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mresult\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mf\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m**\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m    252\u001b[0m                 \u001b[0mshow_inline_matplotlib_plots\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    253\u001b[0m                 \u001b[1;32mif\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mauto_display\u001b[0m \u001b[1;32mand\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mresult\u001b[0m \u001b[1;32mis\u001b[0m \u001b[1;32mnot\u001b[0m \u001b[1;32mNone\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32m~\\OneDrive - NUTRIFOOD INDONESIA\\Survival Analysis\\scripts\\curve_gen.py\u001b[0m in \u001b[0;36msurv_curve_wg\u001b[1;34m(value)\u001b[0m\n\u001b[0;32m     21\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     22\u001b[0m \u001b[1;32mdef\u001b[0m \u001b[0msurv_curve_wg\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mvalue\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m---> 23\u001b[1;33m     \u001b[0mttf_ad\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mttf\u001b[0m\u001b[1;33m[\u001b[0m\u001b[0mttf\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'name'\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m==\u001b[0m \u001b[0mvalue\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m     24\u001b[0m     \u001b[0mT\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mttf_ad\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'runhour_cum'\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     25\u001b[0m     \u001b[0mE\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mttf_ad\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'event'\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;31mNameError\u001b[0m: name 'ttf' is not defined"]}]}}, "57e57c3560bb49bd84443aacf4619734": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_42dde9a3efc54d9b8100e4a2eebf9e5c", "IPY_MODEL_4ddc7fa9208346709614d6a958ac3e6c"], "layout": "IPY_MODEL_9b08f548d20540518149663e662a5809"}}, "59d4cc414bcd4aec94b72208ceef5b1f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "5f2bbeb6be5944bfac7533502b02b38b": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "79fab90f379c4f888a6e6622f7651be0": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "89b8ff13d42d4e2a8434d75803360757": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_2f49c13511d542488831852a95b55088", "outputs": [{"ename": "FileNotFoundError", "evalue": "[Errno 2] File b'C:\\\\Users\\\\maula.fahim\\\\OneDrive - NUTRIFOOD INDONESIA\\\\datasets\\\\filling_event.csv' does not exist: b'C:\\\\Users\\\\maula.fahim\\\\OneDrive - NUTRIFOOD INDONESIA\\\\datasets\\\\filling_event.csv'", "output_type": "error", "traceback": ["\u001b[1;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[1;31mFileNotFoundError\u001b[0m                         Traceback (most recent call last)", "\u001b[1;32mc:\\users\\maula.fahim\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\ipywidgets\\widgets\\interaction.py\u001b[0m in \u001b[0;36mupdate\u001b[1;34m(self, *args)\u001b[0m\n\u001b[0;32m    249\u001b[0m                     \u001b[0mvalue\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mwidget\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mget_interact_value\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    250\u001b[0m                     \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[1;33m[\u001b[0m\u001b[0mwidget\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_kwarg\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mvalue\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m--> 251\u001b[1;33m                 \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mresult\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mf\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m**\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m    252\u001b[0m                 \u001b[0mshow_inline_matplotlib_plots\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    253\u001b[0m                 \u001b[1;32mif\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mauto_display\u001b[0m \u001b[1;32mand\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mresult\u001b[0m \u001b[1;32mis\u001b[0m \u001b[1;32mnot\u001b[0m \u001b[1;32mNone\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32m~\\OneDrive - NUTRIFOOD INDONESIA\\Survival Analysis\\scripts\\curve_gen.py\u001b[0m in \u001b[0;36msurv_curve_wg\u001b[1;34m(value)\u001b[0m\n\u001b[0;32m     25\u001b[0m     \u001b[0mhistory\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mjoin\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mos\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mpath\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mdirname\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mos\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mgetcwd\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;34m'datasets'\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;34m'filling_event.csv'\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     26\u001b[0m     \u001b[0mmachine\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mjoin\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mos\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mpath\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mdirname\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mos\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mgetcwd\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;34m'datasets'\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;34m'machine.csv'\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m---> 27\u001b[1;33m     \u001b[0mttf\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mtransurv\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mhist_url\u001b[0m\u001b[1;33m=\u001b[0m\u001b[0mhistory\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mmach_url\u001b[0m\u001b[1;33m=\u001b[0m\u001b[0mmachine\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m     28\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     29\u001b[0m     \u001b[0mttf_ad\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mttf\u001b[0m\u001b[1;33m[\u001b[0m\u001b[0mttf\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'name'\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m==\u001b[0m \u001b[0mvalue\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32m~\\OneDrive - NUTRIFOOD INDONESIA\\Survival Analysis\\scripts\\transform_dataset.py\u001b[0m in \u001b[0;36mtransurv\u001b[1;34m(hist_url, mach_url)\u001b[0m\n\u001b[0;32m      4\u001b[0m \u001b[1;32mdef\u001b[0m \u001b[0mtransurv\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mhist_url\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mmach_url\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      5\u001b[0m     \u001b[1;31m# read csv\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m----> 6\u001b[1;33m     \u001b[0mhistory\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mpd\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mread_csv\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mhist_url\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m      7\u001b[0m     \u001b[0mmachine\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mpd\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mread_csv\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mmach_url\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0msep\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;34m';'\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      8\u001b[0m     \u001b[1;31m# drop irrelevant value in history\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32mc:\\users\\maula.fahim\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pandas\\io\\parsers.py\u001b[0m in \u001b[0;36mparser_f\u001b[1;34m(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, tupleize_cols, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision)\u001b[0m\n\u001b[0;32m    700\u001b[0m                     skip_blank_lines=skip_blank_lines)\n\u001b[0;32m    701\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m--> 702\u001b[1;33m         \u001b[1;32mreturn\u001b[0m \u001b[0m_read\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mfilepath_or_buffer\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mkwds\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m    703\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    704\u001b[0m     \u001b[0mparser_f\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m__name__\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mname\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32mc:\\users\\maula.fahim\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pandas\\io\\parsers.py\u001b[0m in \u001b[0;36m_read\u001b[1;34m(filepath_or_buffer, kwds)\u001b[0m\n\u001b[0;32m    427\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    428\u001b[0m     \u001b[1;31m# Create the parser.\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m--> 429\u001b[1;33m     \u001b[0mparser\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mTextFileReader\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mfilepath_or_buffer\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;33m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m    430\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    431\u001b[0m     \u001b[1;32mif\u001b[0m \u001b[0mchunksize\u001b[0m \u001b[1;32mor\u001b[0m \u001b[0miterator\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32mc:\\users\\maula.fahim\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pandas\\io\\parsers.py\u001b[0m in \u001b[0;36m__init__\u001b[1;34m(self, f, engine, **kwds)\u001b[0m\n\u001b[0;32m    893\u001b[0m             \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0moptions\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'has_index_names'\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mkwds\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'has_index_names'\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    894\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m--> 895\u001b[1;33m         \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_make_engine\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mengine\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m    896\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    897\u001b[0m     \u001b[1;32mdef\u001b[0m \u001b[0mclose\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32mc:\\users\\maula.fahim\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pandas\\io\\parsers.py\u001b[0m in \u001b[0;36m_make_engine\u001b[1;34m(self, engine)\u001b[0m\n\u001b[0;32m   1120\u001b[0m     \u001b[1;32mdef\u001b[0m \u001b[0m_make_engine\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mengine\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;34m'c'\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m   1121\u001b[0m         \u001b[1;32mif\u001b[0m \u001b[0mengine\u001b[0m \u001b[1;33m==\u001b[0m \u001b[1;34m'c'\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m-> 1122\u001b[1;33m             \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_engine\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mCParserWrapper\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mf\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;33m**\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0moptions\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m   1123\u001b[0m         \u001b[1;32melse\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m   1124\u001b[0m             \u001b[1;32mif\u001b[0m \u001b[0mengine\u001b[0m \u001b[1;33m==\u001b[0m \u001b[1;34m'python'\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32mc:\\users\\maula.fahim\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\pandas\\io\\parsers.py\u001b[0m in \u001b[0;36m__init__\u001b[1;34m(self, src, **kwds)\u001b[0m\n\u001b[0;32m   1851\u001b[0m         \u001b[0mkwds\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'usecols'\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0musecols\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m   1852\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m-> 1853\u001b[1;33m         \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_reader\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mparsers\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mTextReader\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0msrc\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;33m**\u001b[0m\u001b[0mkwds\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m   1854\u001b[0m         \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0munnamed_cols\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_reader\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0munnamed_cols\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m   1855\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32mpandas\\_libs\\parsers.pyx\u001b[0m in \u001b[0;36mpandas._libs.parsers.TextReader.__cinit__\u001b[1;34m()\u001b[0m\n", "\u001b[1;32mpandas\\_libs\\parsers.pyx\u001b[0m in \u001b[0;36mpandas._libs.parsers.TextReader._setup_parser_source\u001b[1;34m()\u001b[0m\n", "\u001b[1;31mFileNotFoundError\u001b[0m: [Errno 2] File b'C:\\\\Users\\\\maula.fahim\\\\OneDrive - NUTRIFOOD INDONESIA\\\\datasets\\\\filling_event.csv' does not exist: b'C:\\\\Users\\\\maula.fahim\\\\OneDrive - NUTRIFOOD INDONESIA\\\\datasets\\\\filling_event.csv'"]}]}}, "9063aaffe11e4493aea095b0efdc0312": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "91e7231d83e747f28653f2bb786c8042": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "91f2d151bbb046c4a4d3b2901810cd9b": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "9b08f548d20540518149663e662a5809": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "b278a7c04a1f40bfbd5bdf29c72fb70c": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "b4f534372cbf46f6a12f17db8a1c5e22": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "b85a172e459f4ee29b60c757e86429c4": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "b8c077644a204610b3491d651222298d": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_0818438ccedb469381eba7794245f0b3", "IPY_MODEL_89b8ff13d42d4e2a8434d75803360757"], "layout": "IPY_MODEL_79fab90f379c4f888a6e6622f7651be0"}}, "b9416b86a4b940179819f120c186b606": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["id", "name", "runhour_cum", "event", "fail_type"], "description": "df", "index": 0, "layout": "IPY_MODEL_cfce6c73c5794bc28d3f5260d02225ec", "style": "IPY_MODEL_59d4cc414bcd4aec94b72208ceef5b1f"}}, "b9beba201a2445d6bed2f47e1aa9ad3f": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_442d5441d04d48c183b4109ca814433b", "outputs": [{"data": {"image/png": "iVBORw0KGgoAAAANSUhEUgAABCwAAAJJCAYAAABh+6ZDAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAALEgAACxIB0t1+/AAAADl0RVh0U29mdHdhcmUAbWF0cGxvdGxpYiB2ZXJzaW9uIDMuMC4zLCBodHRwOi8vbWF0cGxvdGxpYi5vcmcvnQurowAAIABJREFUeJzs3Xl0FGX6/v8rkBAgiBjN4gcYRGWVTQVkR0C2kBAC+FOIgOAgDCAjM7IJiKIgIjMo4AKM4woji8imQkYYGSWMiDKAyqKyBrKSMQkhIUs/vz849Jc2ZCEk3U+S9+scz7G6qqvufrrroutOVbWXMcYIAAAAAADAIpU8XQAAAAAAAMBv0bAAAAAAAADWoWEBAAAAAACsQ8MCAAAAAABYh4YFAAAAAACwDg0LAAAAAABgHRoW8JiYmBg1adJE4eHhzv/69++vdevWXfO6vvjiC7366qulUGXBpk2bprfeesvt2wWA0uKubG7UqJGSk5OLvK60tDQNHz78mmsAULGVZKaVVTNmzFB0dHSJrOv06dN64oknJEnx8fF6+OGHr7rcnDlztGTJkgLX9fXXXys0NLRE6nKHa/13CyXD29MFoGKrWrWqNm7c6JyOj49XaGiomjVrpsaNGxd5PQcPHlRKSkpplAgAFY6N2ZySkqKDBw+WyLoAVCwllWll1dy5c0tsXWfPntXx48clSUFBQfrwww9LbN3A1dCwgFWCgoJUr149nThxQr/73e/07LPP6uTJk/r111/l5+enhQsX6vbbb9ewYcN044036tixYwoJCdGHH36o3Nxc3XDDDZo0aZLLOps1a6YePXro8OHDWrhwoQYPHqzdu3fL399f0qVu6e7du+Xr66vp06fr5MmTqlSpku666y7NmTNHkjRv3jzt379f6enpMsbohRde0L333uuynXnz5unIkSN6/fXX5efn554BAwA3KI1sviwxMVEjR47UkCFDFBkZqb1792rBggXKyMiQj4+PnnzySXXp0kXTp09XZmamwsPDtX79eu3bt++qy61fv17r1q1TRkaGatSooffff9/NowXAdldmWuPGjbV27Vr94x//kMPhUK1atTRr1izdcccdmjZtmmrUqKEjR44oLi5OjRo10ksvvSQ/Pz/t3LlTCxcuVKVKldSkSRNFR0dr1apVqlOnjl577TV9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nKHiyfHM7721bf/evn27QkJCnNM2jaEnFPb+2LAfFOUzlJCQoKFDh6pRo0aaO3euW+uTCq9x69atSkxM1KBBg/T4448767WtzoCAANWrV0/NmzeXJIWGhurAgQNW1Xj06FH5+vqqRYsWkqSHHnpIe/bscWuNhbFhvykKT+83hbFlv/E02/4ddbfffh+viOPx6aefateuXQoPD9fixYu1Y8cOrVu3rkzkTEm65ZZb1L59e/n7+6tq1ap64IEHFB0dXeE+D1999ZXat2+vm2++WVWqVNHAgQP19ddfV4jPg8caFh06dNDu3buVnJysjIwMRUVFOa+f9ZTY2FiNHz9eCxcuVL9+/SRdOpCZN2+eUlJSlJ2drdWrVztPp/SEtLQ0LViwQBcvXtT58+f18ccf6+WXX7ZqLI8cOaLbbrvNeUqxbWMoSS1bttTx48edp5lt2bJFXbp0Ue3ateXr66tvv/1W0qW78XpqLM+fP6/HHntMf/zjHzVq1Cjn41WrVtXLL7+s06dPyxijlStXemw883tv8xtfT0hOTlZmZqbq1q3rfMymMfSEwvLXhv2gsBovnx7at29fzZgxwyN/USisxokTJ2rbtm3auHGjli9frsDAQK1atcq6Ou+++24lJyfr8OHDki7djf2uu+6yqsZ69eopLi7OeR+n7du3OxsstrBhvymMDftNYWzZbzzNxu/J7nK17+M2fa9wl7fffltbtmzRxo0bNXHiRHXv3l0vvvii9TlT0rp166avvvpKqampys3N1Zdffqk+ffpUuM9D48aNFR0drQsXLsgYox07dqht27YV4vPgsT8pBgUFadKkSRo+fLiys7M1ePBg519OPOWtt97SxYsXXU6Fffjhh/X4449ryJAhysnJUa9evRQaGuqxGrt166b9+/drwIABcjgcGjp0qO69916rxvL06dMKDg52Tjdu3NiqMZQkX19fzZ8/X0888YQuXryorl27qk+fPpKkhQsXaubMmTp//rzuuusu530P3G3dunVKSkrS22+/rbfffluS1L17d/3xj3/UnDlz9Ic//EHZ2dm65557nJffuFtB721+4+tuMTExLp9HSfL397dmDD0hv/wdPXq0Jk6cqObNm3t8Pyisxri4OP3444/Kzc11nuXTrFkzt/7FuCjjaIOi1Pnaa69p5syZysjIUHBwsPNnBG2q8cUXX9STTz4pY4xuvvlmzZs3z6015sem/SY/Nu03+bFtv/E0G78nu0t+38dt+V7habbmTGlp2bKlfv/732vo0KHKzs5Wx44dNWTIEN1+++0V6vPQqVMn/fjjjxo4cKB8fHzUvHlzPf744+rZs2e5/zx4GWOMp4sAAAAAAAC4kscuCQEAAAAAAMgPDQsAAAAAAGAdGhYAAAAAAMA6NCwAAAAAAIB1aFgAAAAAAADr0LBAuda9e3cdPHjQ02UAAEQmA4BNyGSUBTQsAAAAAACAdbyMMcbTRQBX8/XXX2vu3LmqXr260tPTlZOTo88++8w57/nnn9eWLVu0ZMkSnTlzRomJiTpz5oyCgoL08ssvKzAwUN27d1eHDh30448/Kjk5WeHh4Zo0aZIkafXq1Xr//fdVqVIl3XLLLZo1a5bq16+vadOmqUGDBnrsscckyWW6e/fuatGihY4cOaI//elP6tmzp8fGBwDciUwGAHuQyagoOMMCVvvpp5/0l7/8RTNnzlTlypXzXW7v3r169dVXtXXrVlWrVk0ffvihc56vr6/Wr1+vtWvX6u9//7tiY2O1e/du/e1vf9N7772nTZs2KTQ0VOPHj1dR+ncNGjTQZ599RggDqHDIZACwB5mMioCGBax26623qnbt2oUu17ZtW9WoUUOS1LRpU6WkpDjnhYaGSpICAgJ0yy236Ny5c/ryyy8VEhIif39/SdLAgQMVHx+vmJiYQrfVunXr4rwUACjzyGQAsAeZjIqAhgWsVr16dUmSl5eXS1c3OzvbZbmqVas6//+3y3p7e+eZ53A48mzLGKOcnJxCt3W5JgCoaMhkALAHmYyKgIYFygR/f3+dPXtW586dkzFGn3zyyXWtr3Pnzvr000+VnJwsSfroo49Uq1Yt1atXTzfddJO+//57SVJ8fLz27Nlz3fUDQHlCJgOAPchklGfehS8CeN6dd96phx9+WIMGDVJAQIDuv//+6/oZpo4dO+rRRx/ViBEj5HA45O/vr2XLlqlSpUoaNmyYnnrqKfXu3Vt16tRRu3btSvCVAEDZRyYDgD3IZJRn/EoIAAAAAACwDpeEAAAAAAAA69CwAAAAAAAA1qFhAQAAAAAArEPDAgAAAAAAWIeGBQAAAAAAsA4NCwAAAAAAYB0aFgAAAAAAwDo0LAAAAAAAgHVoWAAAAAAAAOvQsAAAAAAAANahYQEAAAAAAKxDwwIAAAAAAFiHhgUAAAAAALAODQsAAAAAAGAdGhYoVTExMWrUqJEeeeSRPPOmTZumRo0a6eDBg5o4cWKxt9GoUSMlJydr+/bteuGFF66n3FI1c+ZMff/9954uAwAAAADKBBoWKHW+vr46fvy4zpw543zswoUL+u677yRJtWvX1uLFi697Oz169NDMmTOvez2lJTo6WsYYT5cBAAAAAGWCt6cLQPlXuXJl9e3bV5s3b9bYsWMlSVFRUerRo4f+/ve/a8+ePVq6dKm2bNmivXv3av78+XI4HJKkMWPGqHfv3jp+/LjmzJmj9PR0JSYmqnHjxnrllVfk6+vr3M769eu1bds2LVu2TCdPntTTTz+tlJQUBQQEyBij/v37q23btnr00UfVtWtX7d+/X6mpqZo8ebJ69uypJUuW6NSpU4qPj1diYqLuuusu3XfffdqwYYNiYmI0efJkhYaGSpLeeOMNRUVFyeFwqHbt2po9e7aCgoI0bNgwtWrVSt99951iY2PVvn17Pf/883r11VeVkJCgp556SgsWLFDLli3d/0YAAAAAQBnCGRZwiwEDBmjjxo3O6Q0bNigiIiLPckuWLNHIkSO1fv16zZs3T//5z38kSWvWrNGAAQO0Zs0aRUVFKSYmRl988UW+25syZYr69eunLVu2aObMmfrvf//rnHf69Gl16tRJ69at05///GfNmzfPOe/bb7/Va6+9po8//lj//ve/9csvv2jlypWaNWuWlixZ4qz96NGjWrt2rTZu3KiuXbu6nNlx6tQpvf/++9q0aZP+/e9/a8+ePZo0aZICAwO1cOFCmhUAAAAAUAScYQG3aNasmSpXrqzvv/9eN998s9LT09WwYcM8y/Xt21dz5szRjh071KFDB/3pT3+SJE2ePFm7du3SihUrdOLECSUkJOjChQtX3VbK/9/e3QdnVR/4Av+GV6GYoWhCXHCpb621gu5eWxHrG11BkUgBu1WpsFdla6uLpVNfVqx41+LbupdaaTuVWostTEGrvLga2ZW2o8KsF2euoGItVVqhJAS5ElFQSHL/cMxsGm0Uos8hfD4zmXl+5/fLeb7nzEOG+c4559m6NatWrcrPf/7zJMlhhx2WoUOHtsx37949p5xySpLkqKOOyquvvtoyN2zYsOy///5JksrKypx00klJkr/+679uWferX/0qq1evzvjx45MkTU1N2b59e8s+TjvttHTp0iV9+vTJoEGDsnXr1t07aQAAAPswhQUfmbPPPjuLFy9Ov379MmbMmHddc+655+a0007LE088kcceeyyzZs1KTU1NrrrqqjQ2NubMM8/Mqaeemo0bN77n8yC6du2aJK3m39mWvF1YdOny9sVFZWVlrX63R48ercbdurX9J9LU1JSLL744559/fpLkrbfealVK7Lfffi2vy8rKPLcCAABgN7glhI/MmDFjUlNTk4ceeqjlWRB/7txzz82aNWsybty43HDDDWloaEh9fX0ef/zxXHrppRk1alSS5Omnn05jY+O77qNPnz7527/929x///1J3r4FZMWKFW3Kid31zu0k27ZtS5LcfvvtufLKK9v9va5du2bXrl0dkgEAAKCzc4UFH5n+/fvnsMMOy/7775++ffu+65pvfetbufHGG/Pd7343ZWVlueyyy8yF+wUAAByeSURBVDJw4MBMnTo1l156aXr37p0+ffrks5/9bP74xz++53vdcsstmTZtWubNm5f+/ftn4MCBra582BNf+tKXUldXl7//+79PWVlZDjrooNx8883t/t7pp5+eK664Itdff30+//nPd0gWAACAzqqs2fXqdEI//OEPM2LEiBx22GF57bXXcvbZZ2f27Nk5/PDDSx0NAACA98EVFnRKn/jEJzJ16tR06dIljY2NmTx5srICAABgL+IKCwAAAKBwPHQTAAAAKByFBQAAAFA4JX2GxY4dO/LMM8+koqIiXbt2LWUUgD3W2NiY+vr6HH300R32rTQAALCvKmlh8cwzz2TChAmljADQ4ebOnZvjjjuu1DEAAGCvVtLCoqKiIsnb/7mvqqoqZRSAPVZbW5sJEya0/G0DAAB2X0kLi3duA6mqqsrAgQNLGQWgw7jFDQAA9pyHbgIAAACFo7AAAAAACkdhAQAAABSOwgIAAAAonPddWGzbti2jR4/O+vXr28ytWbMm48aNy8iRIzNt2rTs2rWrQ0MCAAAA+5b3VVg8/fTTOe+887Ju3bp3nb/iiity3XXX5ZFHHklzc3MWLFjQkRkBAACAfcz7+lrTBQsWZPr06bnyyivbzG3YsCE7duzIsccemyQZN25cvve97+X8889vta6hoSENDQ2tttXW1iZJbv35ynysfN3u5AcojNcbNpc6AgAAdBrvq7CYMWPGe85t2rQpFRUV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CwAAAKBwFBYAAABA4XS9/vrrry9lgJ49e+b4449Pz549Sxljt8heGrKXhuwAAMBHqay5ubm51CEAAAAA/ju3hAAAAACFo7AAAAAACqekhcWSJUsyatSojBgxInPnzi1llHbNmjUrZ511Vs4666zceuutSZLly5enuro6I0aMyMyZM0ucsH233HJLrr766iTJmjVrMm7cuIwcOTLTpk3Lrl27Spzu3S1btizjxo3LmWeeme985ztJ9p7zvmjRopbPzC233JKk+Od927ZtGT16dNavX5/kvc91EY/jz7PPnz8/o0ePTnV1df75n/85b731VpJiZgcAANoqWWFRV1eXmTNnZt68eVm4cGHmz5+ftWvXlirOX7R8+fI8/vjjeeCBB7Jw4cI8++yzefDBB3PNNdfkBz/4QR566KE888wz+c1vflPqqO9pxYoVeeCBB1rGV1xxRa677ro88sgjaW5uzoIFC0qY7t29/PLLmT59en7wgx9k8eLFee655/Kb3/xmrzjv27dvz4wZM/Kzn/0sixYtysqVK7N8+fJCn/enn3465513XtatW5ck2bFjx3ue66Idx59nf+mll3LXXXflF7/4RRYvXpympqbMmzcvSfGyAwAA765khcXy5cszdOjQ9O3bN717987IkSNTU1NTqjh/UUVFRa6++ur06NEj3bt3z2GHHZZ169Zl0KBBOfjgg9OtW7dUV1cXNv+rr76amTNn5pJLLkmSbNiwITt27Mixxx6bJBk3blwhs//Hf/xHRo0alaqqqnTv3j0zZ85Mr1699orz3tjYmKampmzfvj27du3Krl270q1bt0Kf9wULFmT69OmprKxMkqxatepdz3URPz9/nr1Hjx6ZPn16+vTpk7Kysnzyk5/Mn/70p0JmBwAA3l23Ur3xpk2bUlFR0TKurKzMqlWrShXnLzriiCNaXq9bty4PP/xwvvKVr7TJX1dXV4p47bruuusyderUbNy4MUnbc19RUVHI7H/4wx/SvXv3XHLJJdm4cWNOPfXUHHHEEXvFee/Tp08uv/zynHnmmenVq1c++9nPpnv37oU+7zNmzGg1frd/o3V1dYX8/Px59gEDBmTAgAFJki1btmTu3Lm56aabCpkdAAB4dyW7wqKpqSllZWUt4+bm5lbjIvrd736XCy+8MFdeeWUOPvjgvSL/vffem4MOOignnHBCy7a95dw3NjZmxYoVufHGGzN//vysWrUqL7/88l6R/fnnn88vf/nL/OpXv8pjjz2WLl265Iknntgrsr/jvT4ne8vnJ3n71rNJkyZl/PjxOf744/eq7AAAsK8r2RUWVVVVWblyZcu4vr6+5XLuInrqqacyZcqUXHPNNTnrrLPy5JNPpr6+vmW+qPkfeuih1NfXZ8yYMdm6dWveeOONlJWVtcq+efPmQmY/8MADc8IJJ6Rfv35Jkr/7u79LTU1Nunbt2rKmqOf98ccfzwknnJADDjggydu3Htx11117xXl/R1VV1bt+xv98e1GP4/e//30uvvjiXHDBBbnwwguTtD2momYHAABKeIXFsGHDsmLFimzZsiXbt2/P0qVLc/LJJ5cqzl+0cePGXHrppbntttty1llnJUmOOeaYvPTSS/nDH/6QxsbGPPjgg4XMf/fdd+fBBx/MokWLMmXKlAwfPjw33XRTevbsmaeeeirJ299mUcTsp512Wh5//PE0NDSksbExjz32WM4444y94rwfeeSRWb58ed544400Nzdn2bJl+dznPrdXnPd3vNdnfMCAAYU/jm3btuWiiy7K5Zdf3lJWJNkrsgMAAG8r2RUW/fv3z9SpUzNx4sTs3Lkz55xzToYMGVKqOH/RXXfdlTfffDM333xzy7Zzzz03N998c/7pn/4pb775Zk455ZScccYZJUz5wdx222259tprs23btnzmM5/JxIkTSx2pjWOOOSYXX3xxzj///OzcuTMnnnhizjvvvBx66KGFP++f//zn89xzz2XcuHHp3r17Bg8enH/8x3/M6aefXvjz/o6ePXu+52e86J+f++67L5s3b87dd9+du+++O0kyfPjwXH755YXPDgAAvK2subm5udQhAAAAAP67kt0SAgAAAPBeFBYAAABA4SgsAAAAgMJRWAAAAACFo7AAAAAACkdhQac2fPjwrF69utQxAAAA+IAUFgAAAEDhlDU3NzeXOgS8m//6r//KjBkz0rt377z++uvZtWtXHn744Za5G264IQ8++GDuuOOObNiwIfX19dmwYUP69++ff/3Xf01lZWWGDx+eYcOG5bnnnsuWLVsyZsyYTJ06NUkyf/78/OxnP0uXLl1y4IEH5tvf/nYOOeSQXH311TniiCNy0UUXJUmr8fDhwzNkyJD89re/zTe/+c2cfvrpJTs/AAAAnZkrLCi03/3ud/m3f/u3XHvttenatet7rlu5cmVuv/321NTUpFevXvnFL37RMtezZ8/cf//9uffee/OTn/wkGzduzIoVK/LjH/8499xzTxYvXpzRo0fn0ksvzfvp74444og8/PDDygoAAIAPkcKCQjvooIMyYMCAdtd97nOfS58+fZIkRx11VLZu3doyN3r06CRJRUVFDjzwwLzyyit57LHHMmrUqPTr1y9JMm7cuNTV1WX9+vXtvtdxxx23O4cCAADAB6CwoNB69+6dJCkrK2t19cPOnTtbrdtvv/1aXv/52m7durWZa2pqavNezc3N2bVrV7vv9U4mAAAAPjwKC/YK/fr1y5/+9Ke88soraW5uzr//+7/v0f5OOumkPPTQQ9myZUuS5Je//GX69u2bQYMG5eMf/3ieeeaZJEldXV2efPLJPc4PAADAB9Ot/SVQeocffnjOPffcjB8/PhUVFTn11FP36OtKTzzxxPzDP/xDJk2alKampvTr1y8/+tGP0qVLl1xwwQX51re+lZEjR2bgwIEZOnRoBx4JAAAA74dvCQEAAAAKxy0hAAAAQOEoLAAAAIDCUVgAAAAAhaOwAAAAAApHYQEAAAAUjsICAAAAKByFBQAAAFA4CgsAAACgcP4/ItJMaUPOu+sAAAAASUVORK5CYII=\n", "text/plain": "<Figure size 1080x1440 with 4 Axes>"}, "metadata": {}, "output_type": "display_data"}]}}, "bbefbe9548b6444f9d9837cbe781ddf8": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "bd7b17dbeeea41ae9347b2df466a7fae": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["F MATEERBURT AA", "F OMAG 6LINE AA", "F OMAG 6LINE AB", "F OMAG 6LINE AC", "F OMAG 6LINE AD", "F TAM BAG AA", "F TOYO STPK AA", "F UNV 5LINE AC", "F UNV 6LINE AA", "F UNV 6LINE AD", "F UNV 6LINE AE", "F UNV 6LINE AG", "F UNV 6LINE AH", "F UNV 6LINE AI", "F UNV 6LINE AL", "F UNV 6LINE AM", "F UNV 6LINE AN", "F UNV 6LINE AO", "F UNV 6LINE AP", "F UNV 6LINE AQ", "F UNV 6LINE AR", "F UNV 6LINE AS", "F UNV 6LINE AT"], "description": "machine", "index": 1, "layout": "IPY_MODEL_e11db718533946629eff1a8ccc3b0d31", "style": "IPY_MODEL_9063aaffe11e4493aea095b0efdc0312"}}, "ccbd52e2cd594fe5afbf72bb6c6a032c": {"model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "model_name": "OutputModel", "state": {"layout": "IPY_MODEL_d257f6d62f6144b39a8635873dc1c9b4", "outputs": [{"ename": "NameError", "evalue": "name 'ttf' is not defined", "output_type": "error", "traceback": ["\u001b[1;31m---------------------------------------------------------------------------\u001b[0m", "\u001b[1;31mNameError\u001b[0m                                 Traceback (most recent call last)", "\u001b[1;32mc:\\users\\maula.fahim\\appdata\\local\\programs\\python\\python37-32\\lib\\site-packages\\ipywidgets\\widgets\\interaction.py\u001b[0m in \u001b[0;36mupdate\u001b[1;34m(self, *args)\u001b[0m\n\u001b[0;32m    249\u001b[0m                     \u001b[0mvalue\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mwidget\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mget_interact_value\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    250\u001b[0m                     \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[1;33m[\u001b[0m\u001b[0mwidget\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0m_kwarg\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mvalue\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m--> 251\u001b[1;33m                 \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mresult\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mf\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m**\u001b[0m\u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m    252\u001b[0m                 \u001b[0mshow_inline_matplotlib_plots\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m    253\u001b[0m                 \u001b[1;32mif\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mauto_display\u001b[0m \u001b[1;32mand\u001b[0m \u001b[0mself\u001b[0m\u001b[1;33m.\u001b[0m\u001b[0mresult\u001b[0m \u001b[1;32mis\u001b[0m \u001b[1;32mnot\u001b[0m \u001b[1;32mNone\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;32m~\\OneDrive - NUTRIFOOD INDONESIA\\Survival Analysis\\scripts\\curve_gen.py\u001b[0m in \u001b[0;36msurv_curve_wg\u001b[1;34m(df, value)\u001b[0m\n\u001b[0;32m     19\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     20\u001b[0m \u001b[1;32mdef\u001b[0m \u001b[0msurv_curve_wg\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mdf\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mvalue\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m---> 21\u001b[1;33m     \u001b[0mttf_ad\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mttf\u001b[0m\u001b[1;33m[\u001b[0m\u001b[0mttf\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'name'\u001b[0m\u001b[1;33m]\u001b[0m \u001b[1;33m==\u001b[0m \u001b[0mvalue\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m     22\u001b[0m     \u001b[0mT\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mttf_ad\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'runhour_cum'\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m     23\u001b[0m     \u001b[0mE\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0mttf_ad\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;34m'event'\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n", "\u001b[1;31mNameError\u001b[0m: name 'ttf' is not defined"]}]}}, "cfce6c73c5794bc28d3f5260d02225ec": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "d257f6d62f6144b39a8635873dc1c9b4": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "d421c8b912724e708d8eaff2869c4962": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "d926860585b04ade9ca39ee0d99a8304": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["F MATEERBURT AA", "F OMAG 6LINE AA", "F OMAG 6LINE AB", "F OMAG 6LINE AC", "F OMAG 6LINE AD", "F TAM BAG AA", "F TOYO STPK AA", "F UNV 5LINE AC", "F UNV 6LINE AA", "F UNV 6LINE AD", "F UNV 6LINE AE", "F UNV 6LINE AG", "F UNV 6LINE AH", "F UNV 6LINE AI", "F UNV 6LINE AL", "F UNV 6LINE AM", "F UNV 6LINE AN", "F UNV 6LINE AO", "F UNV 6LINE AP", "F UNV 6LINE AQ", "F UNV 6LINE AR", "F UNV 6LINE AS", "F UNV 6LINE AT"], "description": "machine", "index": 1, "layout": "IPY_MODEL_ee60b32aad254701a275299dd785a214", "style": "IPY_MODEL_91e7231d83e747f28653f2bb786c8042"}}, "e10ffac2cbc744319c9cc74e0c4e7f10": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DescriptionStyleModel", "state": {"description_width": ""}}, "e11db718533946629eff1a8ccc3b0d31": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "e1f699b4ac4646039448f616972d7185": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "e4227468641a4742866d4434e0aff72f": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "DropdownModel", "state": {"_options_labels": ["F MATEERBURT AA", "F OMAG 6LINE AA", "F OMAG 6LINE AB", "F OMAG 6LINE AC", "F OMAG 6LINE AD", "F TAM BAG AA", "F TOYO STPK AA", "F UNV 5LINE AC", "F UNV 6LINE AA", "F UNV 6LINE AD", "F UNV 6LINE AE", "F UNV 6LINE AG", "F UNV 6LINE AH", "F UNV 6LINE AI", "F UNV 6LINE AL", "F UNV 6LINE AM", "F UNV 6LINE AN", "F UNV 6LINE AO", "F UNV 6LINE AP", "F UNV 6LINE AQ", "F UNV 6LINE AR", "F UNV 6LINE AS", "F UNV 6LINE AT"], "description": "machine", "index": 3, "layout": "IPY_MODEL_5f2bbeb6be5944bfac7533502b02b38b", "style": "IPY_MODEL_b4f534372cbf46f6a12f17db8a1c5e22"}}, "e930f84694f04099aba776a445079cde": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "ee60b32aad254701a275299dd785a214": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "f3633f236ebd410f97e09e7386922681": {"model_module": "@jupyter-widgets/base", "model_module_version": "1.1.0", "model_name": "LayoutModel", "state": {}}, "f8b47c2bcd9c4f4984f34d34cd5ed668": {"model_module": "@jupyter-widgets/controls", "model_module_version": "1.4.0", "model_name": "VBoxModel", "state": {"_dom_classes": ["widget-interact"], "children": ["IPY_MODEL_e4227468641a4742866d4434e0aff72f", "IPY_MODEL_b9beba201a2445d6bed2f47e1aa9ad3f"], "layout": "IPY_MODEL_e930f84694f04099aba776a445079cde"}}}, "version_major": 2, "version_minor": 0}
-</script>
-
-
-</html>
